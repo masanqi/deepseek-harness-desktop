@@ -11,7 +11,15 @@ cd "$(dirname "$0")/.."
 
 RUNTIME=runtime
 NODE_VERSION=v22.19.0
-DSH_VERSION=0.1.0-rc.6
+DSH_VERSION=0.1.0-rc.8
+
+# The bundle (DMG name, About dialog) carries tauri.conf.json's `version`;
+# keep it in lockstep with the pinned dsh release.
+APP_VERSION="$(python3 -c 'import json; print(json.load(open("src-tauri/tauri.conf.json"))["version"])')"
+if [ "$APP_VERSION" != "$DSH_VERSION" ]; then
+  echo "WARNING: tauri.conf.json version ($APP_VERSION) != DSH_VERSION ($DSH_VERSION)" >&2
+  echo "WARNING: bump both together so the bundle version matches the bundled dsh" >&2
+fi
 
 # This machine's architecture. Intel Macs: set ARCH=x64.
 ARCH="${DSH_DESKTOP_ARCH:-arm64}"
