@@ -114,6 +114,7 @@ fn spawn_dsh(
     let mut cmd = Command::new(node);
     cmd.arg(bundled_bin)
         .arg("web")
+        .arg("--no-open")
         .arg("--port")
         .arg("0")
         .stdout(Stdio::piped())

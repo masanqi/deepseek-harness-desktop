@@ -28,7 +28,9 @@ Output: `src-tauri/target/release/bundle/dmg/`.
 - Node resolution: bundled Node first; falls back to PATH `node` only if it
   satisfies dsh's `^22.19.0 || >=24.0.0` engines.
 - The server runs with `--port 0` (OS-assigned), so it never occupies 3080 and
-  coexists with `npx @deepseek-ai/dsh web`.
+  coexists with `npx @deepseek-ai/dsh web`. It is spawned with `--no-open` so
+  the shell's WKWebView is the only surface — the bundled dsh would otherwise
+  pop the default browser open on every launch.
 - Config and data read from `~/.dsh`, the same harness home as the CLI — no
   `DSH_HOME` override.
 - App icon is the repository's existing DeepSeek mark (`website/public/favicon.svg`).
