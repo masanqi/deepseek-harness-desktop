@@ -7,12 +7,18 @@ macOS ad-hoc signing only (local use).
 ## Build
 
 ```sh
-cd apps/desktop
-bash scripts/prepare-runtime.sh       # portable Node + npm install @deepseek-ai/dsh
-npx -y @tauri-apps/cli@2 build --bundles dmg
+cd apps/desktop-tauri
+pnpm prep                                      # sync version + portable Node + npm install @deepseek-ai/dsh
+pnpm build                                     # sync version + tauri build (DMG)
 ```
 
 Output: `src-tauri/target/release/bundle/dmg/`.
+
+The app version is derived from the workspace root `package.json` version
+(the upstream release) by `scripts/sync-version.sh`, which runs before
+`prep`/`build` and aligns `package.json`, `tauri.conf.json`, `Cargo.toml`,
+and `Cargo.lock`; the bundled `@deepseek-ai/dsh` is installed at that same
+version. After an upstream bump, `pnpm prep` re-pins the runtime.
 
 ## Layout
 

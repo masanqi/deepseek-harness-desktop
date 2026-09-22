@@ -11,7 +11,8 @@ cd "$(dirname "$0")/.."
 
 RUNTIME=runtime
 NODE_VERSION=v22.19.0
-DSH_VERSION=0.1.0-rc.8
+# The pinned dsh release tracks the workspace root version (upstream release).
+DSH_VERSION="$(python3 -c 'import json, sys; print(json.load(open(sys.argv[1]))["version"])' ../../package.json)"
 
 # The bundle (DMG name, About dialog) carries tauri.conf.json's `version`;
 # keep it in lockstep with the pinned dsh release.

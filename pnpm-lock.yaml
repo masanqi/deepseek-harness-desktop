@@ -621,6 +621,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/core/tools
 
+  apps/desktop-tauri: {}
+
   apps/web:
     devDependencies:
       '@deepseek-ai/cordis-plugin-group':

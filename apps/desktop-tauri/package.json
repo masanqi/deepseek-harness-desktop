@@ -1,10 +1,10 @@
 {
   "name": "dsh-desktop",
-  "version": "0.1.0-rc.8",
+  "version": "0.1.6-alpha.2",
   "private": true,
   "type": "module",
   "scripts": {
-    "prep": "bash scripts/prepare-runtime.sh",
-    "build": "npx -y @tauri-apps/cli@2 build --bundles dmg"
+    "prep": "bash scripts/sync-version.sh && bash scripts/prepare-runtime.sh",
+    "build": "bash scripts/sync-version.sh && npx -y @tauri-apps/cli@2 build --bundles dmg"
   }
 }
